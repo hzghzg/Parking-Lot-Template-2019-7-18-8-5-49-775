@@ -3,13 +3,11 @@ package com.thoughtworks.parking_lot.controller;
 import com.thoughtworks.parking_lot.entity.ParkingLot;
 import com.thoughtworks.parking_lot.repository.ParkingLotRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/parkinglots")
@@ -24,6 +22,12 @@ public class ParkingLotController {
         parkingLotRepository.save(parkingLot);
         parkingLotList=parkingLotRepository.findAll();
         return parkingLotList;
+    }
+    //story AC2
+    @DeleteMapping("/{parkinglotname}")
+    public List<ParkingLot> deleteParkingLot(@PathVariable("parkinglotname") String parkinglotname){
+        parkingLotRepository.deleteById(parkinglotname);
+        return parkingLotRepository.findAll();
     }
 
 }
