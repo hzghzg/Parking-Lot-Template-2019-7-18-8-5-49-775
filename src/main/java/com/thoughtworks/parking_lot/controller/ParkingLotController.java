@@ -43,5 +43,10 @@ public class ParkingLotController {
         ParkingLot parkingLot=parkingLotRepository.findById(parkinglotname).get();
         return  parkingLot;
     }
+    @PutMapping
+    public List<ParkingLot> updateCapacityOfParkingLot(@RequestBody ParkingLot parkingLot) {
+        parkingLotRepository.save(parkingLot);
+        return  parkingLotRepository.findAll();
+    }
 
 }
