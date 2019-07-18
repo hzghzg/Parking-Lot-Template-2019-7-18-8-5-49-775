@@ -38,5 +38,10 @@ public class ParkingLotController {
         List<ParkingLot> parkingLotList1=parkingLotService.findAllParkingLotsByPageSize(pageNumber, pageSize);
         return  parkingLotList1;
     }
+    @GetMapping("/{parkinglotname}")
+    public ParkingLot findParkingLotByName(@PathVariable("parkinglotname") String parkinglotname) {
+        ParkingLot parkingLot=parkingLotRepository.findById(parkinglotname).get();
+        return  parkingLot;
+    }
 
 }
