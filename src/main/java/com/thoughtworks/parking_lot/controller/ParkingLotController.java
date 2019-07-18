@@ -25,4 +25,5 @@ public class ParkingLotController {
         parkingLotList=parkingLotRepository.findAll();
         return parkingLotList;
     }
+
 }

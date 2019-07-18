@@ -17,6 +17,7 @@ import static org.junit.Assert.*;
 public class ParkingLotRepositoryTest {
     @Autowired
     ParkingLotRepository parkingLotRepository;
+    //Story AC1
     @Test
     public void should_return_true_information_when_addParkingLot_given_some_parkingLot() {
         //given
@@ -37,4 +38,25 @@ public class ParkingLotRepositoryTest {
         Assertions.assertEquals(50,parkingLotRepository.findAll().get(0).getCapacity());
         Assertions.assertEquals(1,parkingLotRepository.findAll().get(0).getAddress());
     }
+    //Story AC2
+    @Test
+    public void should_return_true_total_number_of_parkinglot_when_deleteParkingLot_given_some_parkingLot() {
+        //given
+        ParkingLot parkingLot1=new ParkingLot("parkinglot1",50,1);
+        ParkingLot parkingLot2=new ParkingLot("parkinglot2",60,2);
+        ParkingLot parkingLot3=new ParkingLot("parkinglot3",55,3);
+        ParkingLot parkingLot4=new ParkingLot("parkinglot4",40,4);
+        ParkingLot parkingLot5=new ParkingLot("parkinglot5",45,5);
+        ParkingLot deleteParkingLot=parkingLot1;
+        //when
+        parkingLotRepository.save(parkingLot1);
+        parkingLotRepository.save(parkingLot2);
+        parkingLotRepository.save(parkingLot3);
+        parkingLotRepository.save(parkingLot4);
+        parkingLotRepository.save(parkingLot5);
+        parkingLotRepository.delete(deleteParkingLot);
+        //then
+        Assertions.assertEquals(4,parkingLotRepository.findAll().size());
+    }
+
 }
